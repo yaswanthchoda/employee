@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee Details</title>
+  <style type="text/css">
+      .empTable{
+        margin-top: 10px;
+      }
+      .empTable th, .empTable, h3, h4{
+        text-align: center;
+      }
+  </style>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="col-md-12">
+      <h3>Employee Details</h3>
+</div>
+
+<div class="col-md-12">
+  <div class="col-md-5"></div>
+  <div class="col-md-3">
+    <h5>To add <span class="text-primary">New Employee</span> click
+    <a href="/add"><button class="btn btn-info">  Add  </button></a></h5>
+  </div>
+</div>
+
+<div class="col-md-12">
+<div class="col-md-1"></div>
+
+<div class=" col-md-10">
+{% if empobj %}
+<table border="1" class="table table-condensed empTable">
+  <thead>
+    <tr>
+      <th>S No</th>
+      <th>Employee Id</th>
+      <th>Employee Name</th>
+      <th>Designation</th>
+      <th>Edit Details</th>
+      <th>Delete </th>
+    </tr>
+  </thead>
+  <tbody>
+{% for row in empobj %} 
+<tr>
+  <td>{{forloop.counter}}</td>
+  <td>{{row.emp_id}}</td>
+  <td>{{row.emp_name|upper}}</td>
+  <td>{{row.designation|upper}}</td>
+  <td><a href="/edit/{{row.emp_id}}"><button class="btn btn-info">Edit</button></a></td>
+  <td><a href="/delete/{{row.emp_id}}"><button class="btn btn-danger">Delete</button></a>
+  </td>
+  
+  
+
+</tr>
+{% endfor %}
+
+  </tbody>
+</table>
+{% else %}
+<div class="col-md-1"></div>
+</div>
+</div>
+<div class="col-md-12" style="text-align: center;">
+<h4 class="text-danger">No records found</h4>
+{% endif %}
+
+</div>
+
+</body>
+</html>

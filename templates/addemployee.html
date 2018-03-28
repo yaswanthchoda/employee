@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+      .empTable, .empTable td{
+        margin-top: 10px;
+        border : none !important;
+      }
+      .empform,.empTable th, .empTable, h3, h4,button{
+        text-align: center;
+
+      }
+      .container{
+      	margin: auto;
+      	border: 1px solid #ccc;
+      	background: #ccc;
+
+      }
+
+</style>
+
+{% if empobj %}
+<h4 class="text-warning">Edit Employee Information</h4>
+{% else %}
+<h4 class="text-info">Add Employee Details</h4>
+{% endif %}
+
+<div class="col-md-12">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<form action=" " method="post" enctype="multipart/form-data" class="empform">
+		{% csrf_token %}
+
+		<div class="col-md-12">
+		<table class="empTable table">
+		  <tbody>
+			<!-- {{form.as_table}} -->
+			<tr>
+				<td><label>Id</label></td>
+				<td><input type="text" id="emp_id" name="emp_id" value="{{empobj.emp_id}}"></td>
+			</tr>
+		    <tr>
+		    	<td><label>Name</label></td>
+		    	<td><input type="text" id="emp_name" name="emp_name" value="{{empobj.emp_name}}"></td>
+		    </tr>
+		    <tr>
+		    	<td><label>Role</label></td>
+		    	<td><input type="text" id="designation" name="designation" value="{{empobj.designation}}"></td>
+		    </tr>
+		    <tr>
+		    	<td></td>
+		    	<td>
+		    		{% if empobj %}
+		    		<button class="btn btn-warning" type="submit">Edit</button>
+		    		{% else %}
+					<button class="btn btn-info" type="submit">Add New Employee</button>
+					{% endif %}
+		    	</td>
+		    </tr>
+		  </tbody>
+		</table>	
+			
+
+
+
+		</form>
+	</div>
+</div>
